@@ -1,0 +1,33 @@
+<input [(ngModel)]="newMovieText" class="form-control" placeholder="Title">
+<button (click)="onCreateNewMovie(newMovieText)" class="btn btn-success">Add Movie</button>
+
+<div class="row" *ngIf="displayList">
+    <div class="col-md-6">
+        <ul *ngIf="displayList" class="list-group">
+            <li *ngFor="let m of movies, let i = index" class="list-group-item">
+        
+                <div class="row">
+                    <div class="col-md-6">
+                        <p *ngIf="!movieIdsBeingEdited[i]">{{ m.title }}</p>
+                        <input *ngIf="movieIdsBeingEdited[i]" [(ngModel)]="m.title"> 
+                    </div>
+                    <div class="col-md-6">
+                        <button *ngIf="!movieIdsBeingEdited[i]" class="btn btn-info" float-right mx-1 (click)="onViewMovieDetails(m)">View</button>
+                        <button *ngIf="!movieIdsBeingEdited[i]" (click)="onStartEditMovie(i)" class="btn btn-warning">Edit</button>
+                        <button *ngIf="movieIdsBeingEdited[i]" (click)="onSaveEditMovie(i)" class="btn btn-success">Save</button>
+                        <button (click)="onDeleteMovie(i)" class="btn btn-danger">X</button>
+                    </div>
+                </div>
+            </li>
+        </ul>   
+    </div>
+    <div class="col-md-6" *ngIf="movieBeingDisplayed">
+        <h4>{{ movieBeingDisplayed.title }} </h4>
+        <hr>
+        <p>{{ movieBeingDisplayed.cover }}</p>
+    </div>
+</div>
+
+<!-- <button (click)="onToggleDisplay()">View List</button> -->
+
+<!--SHOWING OBJ/OBJ... updated instances of m to show m.title-->
