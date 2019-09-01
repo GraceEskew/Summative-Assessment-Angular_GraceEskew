@@ -1,6 +1,3 @@
-<input [(ngModel)]="newMovieText" class="form-control" placeholder="Title">
-<button (click)="onCreateNewMovie(newMovieText)" class="btn btn-success">Add Movie</button>
-
 <div class="row" *ngIf="displayList">
     <div class="col-md-6">
         <ul *ngIf="displayList" class="list-group">
@@ -9,7 +6,9 @@
                 <div class="row">
                     <div class="col-md-6">
                         <p *ngIf="!movieIdsBeingEdited[i]">{{ m.title }}</p>
-                        <input *ngIf="movieIdsBeingEdited[i]" [(ngModel)]="m.title"> 
+                        <input *ngIf="movieIdsBeingEdited[i]" [(ngModel)]="m.title" placeholder="Edit Movie Title">
+                        <input *ngIf="movieIdsBeingEdited[i]" [(ngModel)]="m.cover" placeholder="Edit Movie Cover">
+                        <input *ngIf="movieIdsBeingEdited[i]" [(ngModel)]="m.plot" placeholder="Edit Movie Plot">   
                     </div>
                     <div class="col-md-6">
                         <button *ngIf="!movieIdsBeingEdited[i]" class="btn btn-info" float-right mx-1 (click)="onViewMovieDetails(m)">View</button>
@@ -22,9 +21,13 @@
         </ul>   
     </div>
     <div class="col-md-6" *ngIf="movieBeingDisplayed">
-        <h4>{{ movieBeingDisplayed.title }} </h4>
-        <hr>
-        <p>{{ movieBeingDisplayed.cover }}</p>
+        <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src={{movieBeingDisplayed.cover}} alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{movieBeingDisplayed.title}}</h5>
+                  <p class="card-text">{{movieBeingDisplayed.plot}}</p>
+                </div>
+              </div>
     </div>
 </div>
 

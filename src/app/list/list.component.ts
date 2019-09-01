@@ -63,4 +63,5 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.movieBeingDisplayed = movie;
   } 
 
+
 }

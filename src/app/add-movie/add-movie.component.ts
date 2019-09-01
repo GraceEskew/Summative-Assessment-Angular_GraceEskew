@@ -1,41 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { MoviesService, Movie } from '../movies.service';
+import { MoviesService } from '../movies.service';
+
 
 @Component({
   selector: 'app-add-movie',
   templateUrl: './add-movie.component.html',
   styleUrls: ['./add-movie.component.scss']
 })
-
 export class AddMovieComponent implements OnInit {
-
-  addMovieForm = this.fb.group({
+  movieForm = this.fb.group({
     title: [''],
-    plot: [''],
     cover: [''],
+    plot: [''],
   })
 
-  movies: Movie[] = [];
+  constructor(private moviesService: MoviesService, private fb: FormBuilder) {
+    console.log(this.movieForm);
 
-  constructor(private MoviesService: MoviesService, private fb: FormBuilder,) { 
-    console.log(this.addMovieForm)
   }
 
   ngOnInit() {
-    this.getMovies();
   }
 
-  onSubmitMovie() {
-    const title = this.addMovieForm.value.title;
-    const plot = this.addMovieForm.value.title;
-    const cover = this.addMovieForm.value.cover;
-  }
+  onSubmit() {
+    console.log(this.movieForm) //Keeping for testing purposes
+    
+    const title = this.movieForm.value.title;
+    const plot = this.movieForm.value.plot;
+    const cover = this.movieForm.value.cover;
 
-  getMovies() {
-    setTimeout (() => {
-      this.movies = this.MoviesService.getMovies();
-    }, 0);
+    this.moviesService.addMovie(title, plot, cover);
+
   }
 
 }
