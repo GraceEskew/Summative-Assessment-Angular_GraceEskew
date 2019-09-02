@@ -29,7 +29,9 @@
                 </div>
               </div>
     </div>
-</div>
+    <li *ngFor="let hero of heroes" [movies.selected]="m === selectedMovie" (click)="onSelect(m)">
+        <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </li>
 
 <!-- <button (click)="onToggleDisplay()">View List</button> -->
 

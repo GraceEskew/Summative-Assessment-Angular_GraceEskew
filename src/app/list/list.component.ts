@@ -14,6 +14,7 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
   newMovieText = ""; 
   movieIdsBeingEdited = {};
   movieBeingDisplayed: Movie;
+  selectedMovie = Movie;
 
   //parameter: moviesService, Type: MoviesService
   constructor(private moviesService: MoviesService) { }
@@ -21,10 +22,6 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.getMovies();
   }
-
-  // /* onToggleDisplay() {
-  //    this.displayList = !this.displayList;
-  //  }*/
 
   onDeleteMovie(i: number) {
     this.moviesService.deleteMovie(i)
@@ -62,6 +59,10 @@ export class ListComponent implements OnInit, AfterViewInit, OnDestroy {
   onViewMovieDetails(movie: Movie) {
     this.movieBeingDisplayed = movie;
   } 
+
+  // onSelect(movie: Movie): void {
+  //   this.selectedMovie = movie;
+  // }
 
 
 }
