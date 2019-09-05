@@ -11,8 +11,8 @@ import { MoviesService } from '../movies.service';
 export class AddMovieComponent implements OnInit {
   movieForm = this.fb.group({
     title: [''],
-    cover: [''],
-    plot: [''],
+    image: [''],
+    description: [''],
   })
 
   constructor(private moviesService: MoviesService, private fb: FormBuilder) {
@@ -27,10 +27,10 @@ export class AddMovieComponent implements OnInit {
     console.log(this.movieForm) //Keeping for testing purposes
     
     const title = this.movieForm.value.title;
-    const plot = this.movieForm.value.plot;
-    const cover = this.movieForm.value.cover;
+    const description = this.movieForm.value.description;
+    const image = this.movieForm.value.image;
 
-    this.moviesService.addMovie(title, plot, cover);
+    this.moviesService.addMovie(title, description, image);
 
   }
 

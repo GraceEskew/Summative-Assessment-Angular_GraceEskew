@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 
 export class Movie {
   title: string;
-  plot: string;
-  cover: string;
+  description: string;
+  image: string;
 
-  constructor(title: string, plot: string, cover: string) {
+  constructor(title: string, description: string, image: string) {
     this.title = title;
-    this.plot = plot;
-    this.cover = cover;
+    this.description = description;
+    this.image = image;
   }
 }
 
@@ -29,9 +29,9 @@ export class MoviesService {
   constructor() { }
 
   //Eventually this will be stored in a DB
-  addMovie(title: string, plot: string, cover: string) {
-    const newMovie = new Movie(title, plot, cover);
-    this.movies.push(new Movie(title, plot, cover));
+  addMovie(title: string, description: string, image: string) {
+    const newMovie = new Movie(title, description, image);
+    this.movies.push(new Movie(title, description, image));
   }
 
   deleteMovie(i: number) {
